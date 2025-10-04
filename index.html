@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Pemesanan Kaos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f9fafb;
+            padding: 20px;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 768px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            padding: 32px;
+        }
+
+        h1 {
+            color: #4a6fa5;
+            text-align: center;
+            margin-bottom: 24px;
+            font-size: 1.5rem;
+        }
+
+        h2 {
+            color: #4a6fa5;
+            font-size: 1.25rem;
+            margin: 0;
+        }
+
+        h3 {
+            color: #4a6fa5;
+            margin-bottom: 16px;
+            font-size: 1.125rem;
+        }
+
+        .info-box {
+            background: #f3f4f6;
+            border-left: 4px solid #4a6fa5;
+            padding: 16px;
+            margin-bottom: 24px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .required {
+            color: #dc2626;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #4a6fa5;
+            box-shadow: 0 0 0 3px rgba(74, 111, 165, 0.1);
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: #166088;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0d4d6d;
+        }
+
+        .btn-success {
+            background: #16a34a;
+            color: white;
+            width: 100%;
+            padding: 16px;
+        }
+
+        .btn-success:hover {
+            background: #15803d;
+        }
+
+        .btn-success:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+        }
+
+        .btn-secondary {
+            background: #166088;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #0d4d6d;
+        }
+
+        .product-gallery {
+            margin-top: 32px;
+            margin-bottom: 24px;
+        }
+
+        .product-gallery h2 {
+            margin-bottom: 16px;
+        }
+
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 24px;
+        }
+
+        .product-images {
+            display: flex;
+            transition: transform 0.3s ease-in-out;
+            gap: 16px;
+        }
+
+        .product-image-card {
+            min-width: 100%;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.2s;
+            box-sizing: border-box;
+        }
+
+        .product-image-card:hover {
+            border-color: #4a6fa5;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .product-image-wrapper {
+            width: 100%;
+            max-width: 400px;
+            aspect-ratio: 1;
+            background: #f3f4f6;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            overflow: hidden;
+        }
+
+        .product-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-image-placeholder {
+            font-size: 6rem;
+            color: #9ca3af;
+        }
+
+        .product-image-label {
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 8px;
+            font-size: 1.25rem;
+        }
+
+        .product-image-price {
+            font-size: 1.125rem;
+            color: #166088;
+            font-weight: 500;
+        }
+
+        .carousel-nav {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .carousel-btn {
+            background: #166088;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .carousel-btn:hover {
+            background: #0d4d6d;
+        }
+
+        .carousel-btn:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #d1d5db;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            transition: all 0.2s;
+        }
+
+        .carousel-dot.active {
+            background: #166088;
+            width: 24px;
+            border-radius: 5px;
+        }
+
+        .product-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 24px;
+            margin-bottom: 16px;
+        }
+
+        .product-card {
+            background: #f3f4f6;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .product-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .product-title {
+            color: #166088;
+            font-weight: 500;
+        }
+
+        .btn-remove {
+            background: #dc2626;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+        }
+
+        .btn-remove:hover {
+            background: #b91c1c;
+        }
+
+        .grid {
+            display: grid;
+            gap: 16px;
+        }
+
+        .grid-2 {
+            grid-template-columns: 1fr;
+        }
+
+        @media (min-width: 768px) {
+            .grid-2 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .color-buttons, .sleeve-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .color-btn, .sleeve-btn {
+            flex: 1;
+            min-width: 80px;
+            padding: 10px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .color-btn.active, .sleeve-btn.active {
+            background: #4a6fa5;
+            color: white;
+            border-color: #4a6fa5;
+        }
+
+        .color-btn:hover:not(:disabled), .sleeve-btn:hover:not(:disabled) {
+            border-color: #4a6fa5;
+            background: #eff6ff;
+        }
+
+        .color-btn.active:hover, .sleeve-btn.active:hover {
+            background: #4a6fa5;
+        }
+
+        .color-btn:disabled, .sleeve-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background: #e5e7eb;
+        }
+
+        .color-emoji {
+            font-size: 1.25rem;
+            margin-bottom: 4px;
+        }
+
+        .summary {
+            border: 1px solid #4a6fa5;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 24px;
+            background: white;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #d1d5db;
+        }
+
+        .summary-product {
+            background: #f3f4f6;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 10px 0;
+        }
+
+        .summary-product-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .summary-product-details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 4px;
+            font-size: 0.9rem;
+        }
+
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            padding: 16px;
+            margin-top: 10px;
+            background: #f3f4f6;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .discount-text {
+            color: #16a34a;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 8px;
+            padding: 24px;
+            max-width: 672px;
+            max-height: 90vh;
+            overflow-y: auto;
+            margin: 16px;
+            width: 100%;
+        }
+
+        .modal-header {
+            margin-bottom: 16px;
+        }
+
+        .modal-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .modal-description {
+            color: #6b7280;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #d1d5db;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background: #f3f4f6;
+        }
+
+        tbody tr:nth-child(even) {
+            background: #f9fafb;
+        }
+
+        .size-guide-notes {
+            margin-top: 20px;
+        }
+
+        .size-guide-notes p {
+            margin-bottom: 10px;
+        }
+
+        input[type="number"] {
+            max-width: 150px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Form Pemesanan Kaos</h1>
+        
+        <div class="info-box">
+            <p>Silakan isi form berikut untuk memesan kaos. Pastikan semua informasi yang dimasukkan sudah benar.</p>
+        </div>
+        
+        <form id="orderForm">
+            <div class="form-group">
+                <label for="customerName">Nama Pemesan <span class="required">*</span></label>
+                <input type="text" id="customerName" required placeholder="Masukkan nama lengkap">
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">Nomor Telepon (WhatsApp) <span class="required">*</span></label>
+                <input type="tel" id="phone" required placeholder="Contoh: 628123456789">
+            </div>
+            
+            <div class="product-gallery">
+                <h2>Katalog Produk</h2>
+                <div class="carousel-container">
+                    <div class="product-images" id="productCarousel">
+                        <div class="product-image-card">
+                            <div class="product-image-wrapper">
+                                <img src="https://i.imgur.com/AD1MThF.jpg" alt="Kode 01">
+                            </div>
+                            <div class="product-image-label">Kode 01</div>
+                            <div class="product-image-price">Rp 80.000</div>
+                        </div>
+                        <div class="product-image-card">
+                            <div class="product-image-wrapper">
+                                <img src="https://i.imgur.com/iUc5vqG.jpg" alt="Kode 02">
+                            </div>
+                            <div class="product-image-label">Kode 02</div>
+                            <div class="product-image-price">Rp 80.000</div>
+                        </div>
+                        <div class="product-image-card">
+                            <div class="product-image-wrapper">
+                                <img src="https://i.imgur.com/NjOk1Zt.jpg" alt="Kode 03">
+                            </div>
+                            <div class="product-image-label">Kode 03</div>
+                            <div class="product-image-price">Rp 80.000</div>
+                        </div>
+                        <div class="product-image-card">
+                            <div class="product-image-wrapper">
+                                <img src="https://i.imgur.com/eFe0yis.jpg" alt="Kode 04">
+                            </div>
+                            <div class="product-image-label">Kode 04</div>
+                            <div class="product-image-price">Rp 70.000</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-nav">
+                    <button type="button" class="carousel-btn" id="prevBtn" onclick="prevSlide()">‹</button>
+                    <button type="button" class="carousel-btn" id="nextBtn" onclick="nextSlide()">›</button>
+                </div>
+                <div class="carousel-dots" id="carouselDots"></div>
+            </div>
+            
+            <div class="product-header">
+                <h2>Daftar Produk</h2>
+                <button type="button" class="btn btn-primary" onclick="addProduct()">+ Tambah Produk</button>
+            </div>
+            
+            <div id="productList"></div>
+            
+            <div class="form-group">
+                <label for="notes">Catatan (Opsional)</label>
+                <textarea id="notes" placeholder="Tambahkan catatan jika ada..."></textarea>
+            </div>
+            
+            <div id="summary"></div>
+            
+            <button type="submit" class="btn btn-success" id="submitBtn" disabled>
+                Kirim Pesanan via WhatsApp
+            </button>
+        </form>
+    </div>
+
+    <div id="sizeModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Panduan Ukuran Kaos</div>
+                <div class="modal-description">Panduan ukuran lengkap untuk membantu Anda memilih ukuran yang tepat</div>
+            </div>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Ukuran</th>
+                        <th>Lebar Dada (cm)</th>
+                        <th>Panjang Badan (cm)</th>
+                        <th>Panjang Lengan (cm)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>S</td><td>49</td><td>69</td><td>19</td></tr>
+                    <tr><td>M</td><td>51</td><td>71</td><td>20</td></tr>
+                    <tr><td>L</td><td>53</td><td>73</td><td>21</td></tr>
+                    <tr><td>XL</td><td>55</td><td>75</td><td>22</td></tr>
+                    <tr><td>XXL</td><td>57</td><td>77</td><td>23</td></tr>
+                    <tr><td>3XL</td><td>59</td><td>79</td><td>24</td></tr>
+                    <tr><td>4XL</td><td>61</td><td>81</td><td>25</td></tr>
+                    <tr><td>5XL</td><td>63</td><td>83</td><td>26</td></tr>
+                </tbody>
+            </table>
+            
+            <div class="size-guide-notes">
+                <p><strong>Cara Mengukur:</strong></p>
+                <p><strong>Lebar Dada:</strong> Ukur dari ketiak kiri ke ketiak kanan (sekeliling dada).</p>
+                <p><strong>Panjang Badan:</strong> Ukur dari bahu tertinggi hingga ujung bawah kaos.</p>
+                <p><strong>Panjang Lengan:</strong> Ukur dari ujung bahu hingga ujung lengan.</p>
+                <p><em>Catatan: Ukuran dapat bervariasi 1-2 cm karena proses produksi.</em></p>
+            </div>
+            
+            <button type="button" class="btn btn-primary" onclick="closeSizeModal()" style="margin-top: 16px;">Tutup</button>
+        </div>
+    </div>
+
+    <script>
+        const PRODUCT_PRICES = {
+            '01': { base: 80000, category: 'regular' },
+            '02': { base: 80000, category: 'regular' },
+            '03': { base: 80000, category: 'regular' },
+            '04': { base: 70000, category: 'regular' }
+        };
+
+        const PRICING_RULES = {
+            longSleeveExtra: 8000,
+            oversizeExtra: 5000,
+            bulkDiscountThreshold: 12,
+            bulkDiscountAmount: 10000
+        };
+
+        let products = [{
+            id: Date.now(),
+            code: '',
+            color: '',
+            sleeve: '',
+            size: '',
+            quantity: 1
+        }];
+
+        let currentSlide = 0;
+        const totalSlides = 4;
+
+        function initCarousel() {
+            const dotsContainer = document.getElementById('carouselDots');
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('button');
+                dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+                dot.onclick = () => goToSlide(i);
+                dotsContainer.appendChild(dot);
+            }
+            updateCarousel();
+        }
+
+        function updateCarousel() {
+            const carousel = document.getElementById('productCarousel');
+            carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            const dots = document.querySelectorAll('.carousel-dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+            
+            document.getElementById('prevBtn').disabled = currentSlide === 0;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                updateCarousel();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateCarousel();
+            }
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+        }
+
+        // Swipe support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.getElementById('productCarousel').addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.getElementById('productCarousel').addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) nextSlide();
+            if (touchEndX > touchStartX + 50) prevSlide();
+        }
+
+        function generateId() {
+            return Date.now() + Math.random();
+        }
+
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(amount);
+        }
+
+        function formatPhoneNumber(value) {
+            let cleanValue = value.replace(/\D/g, '');
+            if (cleanValue.startsWith('0')) {
+                cleanValue = '62' + cleanValue.substring(1);
+            } else if (cleanValue.startsWith('8') && !cleanValue.startsWith('62')) {
+                cleanValue = '62' + cleanValue;
+            }
+            return cleanValue;
+        }
+
+        function calculatePrice(code, sleeve, size, quantity) {
+            if (!PRODUCT_PRICES[code]) return 0;
+            
+            const product = PRODUCT_PRICES[code];
+            let unitPrice = product.base;
+            
+            if (product.category === 'regular' && sleeve === 'panjang') {
+                unitPrice += PRICING_RULES.longSleeveExtra;
+            }
+            
+            const sizeOrder = ['S', 'M', 'L', 'XL', 'XXL', '3XL', '4XL', '5XL'];
+            const sizeIndex = sizeOrder.indexOf(size);
+            const xlIndex = sizeOrder.indexOf('XL');
+            
+            if (sizeIndex > xlIndex) {
+                const oversizeLevels = sizeIndex - xlIndex;
+                unitPrice += (PRICING_RULES.oversizeExtra * oversizeLevels);
+            }
+            
+            return unitPrice * quantity;
+        }
+
+        function getAvailableSleeves(code) {
+            return ['pendek', 'panjang'];
+        }
+
+        function addProduct() {
+            products.push({
+                id: generateId(),
+                code: '',
+                color: '',
+                sleeve: '',
+                size: '',
+                quantity: 1
+            });
+            renderProducts();
+            updateValidation();
+        }
+
+        function removeProduct(id) {
+            if (products.length > 1) {
+                products = products.filter(p => p.id !== id);
+                renderProducts();
+                updateValidation();
+            }
+        }
+
+        function updateProduct(id, field, value) {
+            products = products.map(p => {
+                if (p.id === id) {
+                    const updated = { ...p, [field]: value };
+                    
+                    if (field === 'code') {
+                        const availableSleeves = getAvailableSleeves(value);
+                        if (!availableSleeves.includes(updated.sleeve)) {
+                            updated.sleeve = availableSleeves.length === 1 ? availableSleeves[0] : '';
+                        }
+                    }
+                    
+                    return updated;
+                }
+                return p;
+            });
+            renderProducts();
+            updateValidation();
+        }
+
+        function renderProducts() {
+            const productList = document.getElementById('productList');
+            productList.innerHTML = products.map((product, index) => `
+                <div class="product-card">
+                    <div class="product-card-header">
+                        <div class="product-title">Produk ${index + 1}</div>
+                        ${products.length > 1 ? `
+                            <button type="button" class="btn btn-remove" onclick="removeProduct(${product.id})">
+                                ✕
+                            </button>
+                        ` : ''}
+                    </div>
+                    
+                    <div class="grid grid-2">
+                        <div class="form-group">
+                            <label>Kode Kaos <span class="required">*</span></label>
+                            <select onchange="updateProduct(${product.id}, 'code', this.value)" required>
+                                <option value="">-- Pilih Kode Kaos --</option>
+                                ${['01', '02', '03', '04'].map(code => 
+                                    `<option value="${code}" ${product.code === code ? 'selected' : ''}>Kode ${code}</option>`
+                                ).join('')}
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Ukuran <span class="required">*</span></label>
+                            <select onchange="updateProduct(${product.id}, 'size', this.value)" required>
+                                <option value="">-- Pilih Ukuran --</option>
+                                ${['S', 'M', 'L', 'XL', 'XXL', '3XL', '4XL', '5XL'].map(size => 
+                                    `<option value="${size}" ${product.size === size ? 'selected' : ''}>${size}</option>`
+                                ).join('')}
+                            </select>
+                            <button type="button" class="btn btn-secondary" onclick="openSizeModal()" style="margin-top: 8px;">
+                                Lihat Panduan Ukuran
+                            </button>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Warna Kaos <span class="required">*</span></label>
+                            <div class="color-buttons">
+                                ${[
+                                    { value: 'hitam', label: 'Hitam', emoji: '⚫' },
+                                    { value: 'putih', label: 'Putih', emoji: '⚪' }
+                                ].map(color => `
+                                    <button type="button" class="color-btn ${product.color === color.value ? 'active' : ''}" 
+                                            onclick="updateProduct(${product.id}, 'color', '${color.value}')"
+                                            ${!product.code ? 'disabled' : ''}>
+                                        <span class="color-emoji">${color.emoji}</span>
+                                        <span>${color.label}</span>
+                                    </button>
+                                `).join('')}
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Jenis Lengan <span class="required">*</span></label>
+                            <div class="sleeve-buttons">
+                                ${[
+                                    { value: 'pendek', label: 'Pendek' },
+                                    { value: 'panjang', label: 'Panjang' }
+                                ].map(sleeve => {
+                                    const availableSleeves = getAvailableSleeves(product.code);
+                                    const isAvailable = product.code && availableSleeves.includes(sleeve.value);
+                                    return `
+                                        <button type="button" class="sleeve-btn ${product.sleeve === sleeve.value ? 'active' : ''}" 
+                                                onclick="updateProduct(${product.id}, 'sleeve', '${sleeve.value}')"
+                                                ${!isAvailable ? 'disabled' : ''}>
+                                            ${sleeve.label}
+                                        </button>
+                                    `;
+                                }).join('')}
+                            </div>
+                        </div>
+                        
+                        <div class="form-group" style="grid-column: 1 / -1;">
+                            <label>Jumlah <span class="required">*</span></label>
+                            <input type="number" min="1" value="${product.quantity}" 
+                                   onchange="updateProduct(${product.id}, 'quantity', parseInt(this.value) || 1)">
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function updateValidation() {
+            const customerName = document.getElementById('customerName').value;
+            const phone = document.getElementById('phone').value;
+            const validProducts = products.filter(p => 
+                p.code && p.color && p.sleeve && p.size && p.quantity > 0
+            );
+            
+            const isValid = customerName && phone && validProducts.length > 0;
+            document.getElementById('submitBtn').disabled = !isValid;
+            
+            renderSummary(customerName, phone, validProducts);
+        }
+
+        function renderSummary(customerName, phone, validProducts) {
+            if (!customerName || !phone || validProducts.length === 0) {
+                document.getElementById('summary').innerHTML = '';
+                return;
+            }
+
+            let totalQuantity = 0;
+            let subtotal = 0;
+            
+            const summaryProducts = validProducts.map(product => {
+                const price = calculatePrice(product.code, product.sleeve, product.size, product.quantity);
+                totalQuantity += product.quantity;
+                subtotal += price;
+                const index = products.findIndex(p => p.id === product.id) + 1;
+                
+                return {
+                    ...product,
+                    index,
+                    price,
+                    unitPrice: price / product.quantity
+                };
+            });
+            
+            let discount = 0;
+            if (totalQuantity >= PRICING_RULES.bulkDiscountThreshold) {
+                discount = totalQuantity * PRICING_RULES.bulkDiscountAmount;
+            }
+            
+            const total = subtotal - discount;
+            const notes = document.getElementById('notes').value;
+
+            document.getElementById('summary').innerHTML = `
+                <div class="summary">
+                    <h3>Ringkasan Pesanan</h3>
+                    
+                    <div class="summary-row">
+                        <span>Nama Pemesan:</span>
+                        <span>${customerName}</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Telepon:</span>
+                        <span>${phone}</span>
+                    </div>
+                    
+                    ${summaryProducts.map(product => `
+                        <div class="summary-product">
+                            <div class="summary-product-header">
+                                <span>Produk ${product.index}</span>
+                                <span>${product.quantity} pcs - ${formatCurrency(product.price)}</span>
+                            </div>
+                            <div class="summary-product-details">
+                                <span>Kode: ${product.code}</span>
+                                <span>Ukuran: ${product.size}</span>
+                                <span>Warna: ${product.color}</span>
+                                <span>Lengan: ${product.sleeve}</span>
+                                <span style="grid-column: 1 / -1;">Harga satuan: ${formatCurrency(product.unitPrice)}</span>
+                            </div>
+                        </div>
+                    `).join('')}
+                    
+                    ${notes ? `
+                        <div class="summary-row">
+                            <span>Catatan:</span>
+                            <span>${notes}</span>
+                        </div>
+                    ` : ''}
+                    
+                    <div class="summary-row">
+                        <span>Total Pesanan:</span>
+                        <span>${totalQuantity} pcs</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Subtotal:</span>
+                        <span>${formatCurrency(subtotal)}</span>
+                    </div>
+                    
+                    ${discount > 0 ? `
+                        <div class="summary-row discount-text">
+                            <span>Diskon Grosir (${totalQuantity} pcs):</span>
+                            <span>-${formatCurrency(discount)}</span>
+                        </div>
+                    ` : ''}
+                    
+                    <div class="summary-total">
+                        <span>Total Bayar:</span>
+                        <span>${formatCurrency(total)}</span>
+                    </div>
+                </div>
+            `;
+        }
+
+        function openSizeModal() {
+            document.getElementById('sizeModal').classList.add('active');
+        }
+
+        function closeSizeModal() {
+            document.getElementById('sizeModal').classList.remove('active');
+        }
+
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const customerName = document.getElementById('customerName').value;
+            const phone = document.getElementById('phone').value;
+            const notes = document.getElementById('notes').value;
+            
+            const validProducts = products.filter(p => 
+                p.code && p.color && p.sleeve && p.size && p.quantity > 0
+            );
+            
+            if (!customerName || !phone || validProducts.length === 0) {
+                alert('Mohon lengkapi semua field yang diperlukan!');
+                return;
+            }
+            
+            let totalQuantity = 0;
+            let subtotal = 0;
+            
+            const productDetails = validProducts.map((product, index) => {
+                const price = calculatePrice(product.code, product.sleeve, product.size, product.quantity);
+                totalQuantity += product.quantity;
+                subtotal += price;
+                
+                return {
+                    ...product,
+                    index: index + 1,
+                    price,
+                    unitPrice: price / product.quantity
+                };
+            });
+            
+            let discount = 0;
+            if (totalQuantity >= PRICING_RULES.bulkDiscountThreshold) {
+                discount = totalQuantity * PRICING_RULES.bulkDiscountAmount;
+            }
+            
+            const total = subtotal - discount;
+            
+            let message = "PESANAN BARU KAOS\n\n";
+            message += `Nama: ${customerName}\n`;
+            message += `Telepon: ${phone}\n\n`;
+            message += "DETAIL PESANAN:\n";
+            
+            productDetails.forEach((product) => {
+                message += `\n${product.index}. Kode ${product.code}\n`;
+                message += `   Warna: ${product.color}\n`;
+                message += `   Lengan: ${product.sleeve}\n`;
+                message += `   Ukuran: ${product.size}\n`;
+                message += `   Jumlah: ${product.quantity} pcs\n`;
+                message += `   Harga: ${formatCurrency(product.price)}\n`;
+            });
+            
+            message += `\n━━━━━━━━━━━━━━━━━━━━\n`;
+            message += `TOTAL: ${totalQuantity} pcs\n`;
+            message += `SUBTOTAL: ${formatCurrency(subtotal)}\n`;
+            
+            if (discount > 0) {
+                message += `DISKON GROSIR: -${formatCurrency(discount)}\n`;
+            }
+            
+            message += `TOTAL BAYAR: ${formatCurrency(total)}\n`;
+            message += `━━━━━━━━━━━━━━━━━━━━\n`;
+            
+            if (notes) {
+                message += `\nCatatan: ${notes}\n`;
+            }
+            
+            message += `\nWaktu Pemesanan: ${new Date().toLocaleString('id-ID')}`;
+            
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappNumber = "6287753541396";
+            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+            
+            window.open(whatsappURL, '_blank');
+            
+            setTimeout(() => {
+                alert('Form berhasil dikirim! WhatsApp akan terbuka dalam tab baru.\n\nJika WhatsApp tidak terbuka otomatis, silakan copy pesan dan kirim manual.');
+            }, 500);
+        });
+
+        document.getElementById('customerName').addEventListener('input', updateValidation);
+        document.getElementById('phone').addEventListener('input', function(e) {
+            e.target.value = formatPhoneNumber(e.target.value);
+            updateValidation();
+        });
+        document.getElementById('notes').addEventListener('input', updateValidation);
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('sizeModal');
+            if (event.target === modal) {
+                closeSizeModal();
+            }
+        };
+
+        // Initialize
+        initCarousel();
+        renderProducts();
+        updateValidation();
+    </script>
+</body>
+</html>
