@@ -648,6 +648,7 @@
             const dotsContainer = document.getElementById('carouselDots');
             for (let i = 0; i < totalSlides; i++) {
                 const dot = document.createElement('button');
+                dot.type = 'button';
                 dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
                 dot.onclick = () => goToSlide(i);
                 dotsContainer.appendChild(dot);
